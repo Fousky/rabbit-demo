@@ -1,15 +1,54 @@
 {
+    "clue/stream-filter": {
+        "version": "v1.4.0"
+    },
+    "guzzlehttp/guzzle": {
+        "version": "6.3.3"
+    },
+    "guzzlehttp/promises": {
+        "version": "v1.3.1"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.4.2"
+    },
+    "php-http/client-common": {
+        "version": "1.7.0"
+    },
+    "php-http/discovery": {
+        "version": "1.4.0"
+    },
+    "php-http/guzzle6-adapter": {
+        "version": "v1.1.1"
+    },
+    "php-http/httplug": {
+        "version": "v1.1.0"
+    },
+    "php-http/message": {
+        "version": "1.6.0"
+    },
+    "php-http/message-factory": {
+        "version": "v1.0.2"
+    },
+    "php-http/promise": {
+        "version": "v1.0.0"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
     "psr/container": {
         "version": "1.0.0"
     },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/log": {
         "version": "1.0.2"
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "richardfullmer/rabbitmq-management-api": {
+        "version": "2.0.0"
     },
     "symfony/cache": {
         "version": "v3.4.9"
@@ -73,6 +112,9 @@
     },
     "symfony/lts": {
         "version": "v3"
+    },
+    "symfony/options-resolver": {
+        "version": "v3.4.9"
     },
     "symfony/polyfill-apcu": {
         "version": "v1.8.0"
