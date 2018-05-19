@@ -1,7 +1,14 @@
 {
     "type": "fousky/rabbit-demo",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Lukáš Brzák",
+            "email": "lukas.brzak@fousky.cz"
+        }
+    ],
     "require": {
+        "roave/security-advisories": "dev-master",
         "php": "^7.0.8",
         "ext-iconv": "*",
         "php-http/guzzle6-adapter": "^1.1",
@@ -16,6 +23,10 @@
         "symfony/dotenv": "^3.4"
     },
     "config": {
+        "bin-dir": "bin",
+        "platform": {
+            "php": "7.0.8"
+        },
         "preferred-install": {
             "*": "dist"
         },
