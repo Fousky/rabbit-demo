@@ -1,4 +1,7 @@
 {
+    "bunny/bunny": {
+        "version": "v0.4.0"
+    },
     "clue/stream-filter": {
         "version": "v1.4.0"
     },
@@ -46,6 +49,12 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "react/event-loop": {
+        "version": "v0.5.2"
+    },
+    "react/promise": {
+        "version": "v2.5.1"
     },
     "richardfullmer/rabbitmq-management-api": {
         "version": "2.0.0"

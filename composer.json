@@ -8,11 +8,12 @@
         }
     ],
     "require": {
-        "roave/security-advisories": "dev-master",
         "php": "^7.0.8",
         "ext-iconv": "*",
+        "bunny/bunny": "^0.4.0",
         "php-http/guzzle6-adapter": "^1.1",
         "richardfullmer/rabbitmq-management-api": "^2.0",
+        "roave/security-advisories": "dev-master",
         "symfony/console": "^3.4",
         "symfony/flex": "^1.0",
         "symfony/framework-bundle": "^3.4",
