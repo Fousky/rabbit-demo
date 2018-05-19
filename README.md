@@ -27,7 +27,7 @@ Použité knihovny:
 * `bunny/bunny` komunikuje přímo s RabbitMQ nativním protokolem
 * `richardfullmer/rabbitmq-management-api` komunikuje s RabbitMQ / Management API a umožňuje nastavovat Virtual Hosts, Queues apod.
 * `php-http/guzzle6-adapter` potřebná závislost pro `richardfullmer/rabbitmq-management-api` 
-* vše ostatní je součást frameworku Symfony
+* vše ostatní je součást frameworku Symfony nebo nástroje pro vývoj (coding-standards, lintery, PhpStan apod.)
 
 ### 3. lokálně nainstalujeme RabbitMQ
 
@@ -57,3 +57,38 @@ Uvnitř souboru `.env` upravíme parametry začínající `RABBIT_*`. Pokud nám
 Pokud nám spojení funguje, pak následující příkaz neodpoví chybou:
 
     php bin/console rabbit:test
+
+## Dostupné CLI commandy
+
+Po úspěšné instalaci máme k dispozici následující příkazy, které se dají spouštět z příkazové řádky.
+
+### `php bin/console rabbit:create:virtualhost`
+Příkaz pro vytvoření nového "prostředí" (VirtualHost) v RabbitMQ. [Více informací zde](https://www.rabbitmq.com/vhosts.html).
+
+### `php bin/console rabbit:delete:virtualhost`
+Příkaz pro smazání "prostředí" (VirtualHost).
+
+### `php bin/console rabbit:create:queue`
+Příkaz pro vytvoření nové "fronty" (Queue) v RabbitMQ. [Více informací zde](https://www.rabbitmq.com/queues.html).
+
+### `php bin/console rabbit:delete:queue`
+Příkaz pro smazání "fronty" (Queue).
+
+### `php bin/console rabbit:create:user`
+Příkaz pro vytvoření RabbitMQ uživatele - **funguje jen na Linuxu**.
+
+### `php bin/console rabbit:create:binding`
+Příkaz pro vytvoření nové "vazby" (Binding) mezi Exchange a Queue.
+
+### `php bin/console rabbit:delete:binding`
+Příkaz pro smazání "vazby" (Binding).
+
+### `php bin/console rabbit:test`
+Příkaz pro testování spojení s RabbitMQ Management API.
+
+
+### `php bin/console rabbit:produce:email`
+Příkaz, který produkuje určité množství "zpráv" (Messages) na určitého pošťáka (Exchange).
+
+### `php bin/console rabbit:consume:email`
+Příkaz, který naslouchá na určitou "frontu" (Queue) a umí "konzumovat" (Consume) zprávy - jen zobrazuje jejich množství.
