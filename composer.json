@@ -21,6 +21,7 @@
         "symfony/framework-bundle": "^3.4",
         "symfony/lts": "^3",
         "symfony/process": "^3.4",
+        "symfony/var-dumper": "^3.4",
         "symfony/yaml": "^3.4"
     },
     "require-dev": {
