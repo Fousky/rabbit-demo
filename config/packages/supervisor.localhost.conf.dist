@@ -1,0 +1,11 @@
+
+; -----------------------------------
+; Sample Supervisord config file.
+; -----------------------------------
+[program:sample_consumer]
+command=php /path/to/project/bin/console rabbit:consume:email / email
+directory=/path/to/project
+user=www-data
+autorestart=true
+process_name=%(process_num)02d
+numprocs=1

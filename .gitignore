@@ -15,4 +15,5 @@
 
 ###> fousky/rabbit-demo ###
 /config/packages/rabbit.yaml
+/config/packages/supervisor.localhost.conf
 ###< fousky/rabbit-demo ###
