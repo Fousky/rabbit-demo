@@ -1,0 +1,6 @@
+parameters:
+    rabbitmq_host: 127.0.0.1
+    rabbitmq_port: 5672
+    rabbitmq_user: ~
+    rabbitmq_pass: ~
+    rabbitmq_api_url: http://localhost:15672
