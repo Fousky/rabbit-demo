@@ -12,19 +12,19 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 /**
  * @author Lukáš Brzák <lukas.brzak@fousky.cz>
  */
-class DeleteQueueCommand extends Command
+final class DeleteQueueCommand extends Command
 {
     /** @var RabbitManagementClientAdapterFactory */
-    private $clientAdapterFactory;
+    private $managementClientAdapterFactory;
 
     /** @var SymfonyStyle */
     private $io;
 
     public function __construct(
-        RabbitManagementClientAdapterFactory $clientAdapterFactory,
+        RabbitManagementClientAdapterFactory $managementClientAdapterFactory,
         string $name = null
     ) {
-        $this->clientAdapterFactory = $clientAdapterFactory;
+        $this->managementClientAdapterFactory = $managementClientAdapterFactory;
 
         parent::__construct($name);
     }
@@ -41,10 +41,10 @@ class DeleteQueueCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $clientAdapter = $this->clientAdapterFactory->getAdapter();
+        $managementClientAdapter = $this->managementClientAdapterFactory->getAdapter();
 
-        $vhost = $this->askForVhost($clientAdapter);
-        $queue = $this->askForQueue($clientAdapter, $vhost);
+        $vhost = $this->askForVhost($managementClientAdapter);
+        $queue = $this->askForQueue($managementClientAdapter, $vhost);
 
         if (!$io->confirm(sprintf('Really delete Queue %s?', $queue), false)) {
             $io->warning('Skipping.');
@@ -52,7 +52,7 @@ class DeleteQueueCommand extends Command
             return;
         }
 
-        $clientAdapter->deleteQueue($vhost, $queue);
+        $managementClientAdapter->deleteQueue($vhost, $queue);
     }
 
     private function askForVhost(RabbitManagementClientAdapter $clientAdapter): string

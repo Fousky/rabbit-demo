@@ -11,16 +11,16 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 /**
  * @author Lukáš Brzák <lukas.brzak@fousky.cz>
  */
-class CreateVirtualHostCommand extends Command
+final class CreateVirtualHostCommand extends Command
 {
     /** @var RabbitManagementClientAdapterFactory */
-    private $adapterFactory;
+    private $managementClientAdapterFactory;
 
     public function __construct(
-        RabbitManagementClientAdapterFactory $clientAdapterFactory,
+        RabbitManagementClientAdapterFactory $managementClientAdapterFactory,
         string $name = null
     ) {
-        $this->adapterFactory = $clientAdapterFactory;
+        $this->managementClientAdapterFactory = $managementClientAdapterFactory;
         parent::__construct($name);
     }
 
@@ -36,7 +36,7 @@ class CreateVirtualHostCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $managementClientAdapter = $this->adapterFactory->getAdapter();
+        $managementClientAdapter = $this->managementClientAdapterFactory->getAdapter();
         $managementClientAdapter->createVirtualHost(
             $io->ask('Enter VirtualHost name')
         );

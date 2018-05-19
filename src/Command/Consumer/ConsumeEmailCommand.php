@@ -30,11 +30,11 @@ final class ConsumeEmailCommand extends Command
     private $io;
 
     public function __construct(
-        RabbitManagementClientAdapterFactory $managementClientAdapterFactory,
+        RabbitManagementClientAdapterFactory $managementManagementClientAdapterFactory,
         RabbitClientAdapterFactory $clientAdapterFactory,
         string $name = null
     ) {
-        $this->managementClientAdapterFactory = $managementClientAdapterFactory;
+        $this->managementClientAdapterFactory = $managementManagementClientAdapterFactory;
         $this->clientAdapterFactory = $clientAdapterFactory;
 
         parent::__construct($name);

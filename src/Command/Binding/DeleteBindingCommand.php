@@ -12,22 +12,22 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 /**
  * @author Lukáš Brzák <lukas.brzak@fousky.cz>
  */
-class DeleteBindingCommand extends Command
+final class DeleteBindingCommand extends Command
 {
     /** @var RabbitManagementClientAdapterFactory */
-    private $clientAdapterFactory;
+    private $managementClientAdapterFactory;
 
     /** @var \App\Client\RabbitManagementClientAdapter */
-    private $clientAdapter;
+    private $managementClientAdapter;
 
     /** @var SymfonyStyle */
     private $io;
 
     public function __construct(
-        RabbitManagementClientAdapterFactory $clientAdapterFactory,
+        RabbitManagementClientAdapterFactory $managementClientAdapterFactory,
         string $name = null
     ) {
-        $this->clientAdapterFactory = $clientAdapterFactory;
+        $this->managementClientAdapterFactory = $managementClientAdapterFactory;
 
         parent::__construct($name);
     }
@@ -42,7 +42,7 @@ class DeleteBindingCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->clientAdapter = $this->clientAdapterFactory->getAdapter();
+        $this->managementClientAdapter = $this->managementClientAdapterFactory->getAdapter();
         $this->io = new SymfonyStyle($input, $output);
 
         $vhost = $this->askForVhost();
@@ -53,7 +53,7 @@ class DeleteBindingCommand extends Command
 
     private function askAndDeleteBindings(string $vhost, string $queue)
     {
-        $this->clientAdapter->deleteBindings(
+        $this->managementClientAdapter->deleteBindings(
             $vhost,
             $this->io->choice('Choose Exchange', ProducerMessage::$exchanges),
             $queue,
@@ -64,7 +64,7 @@ class DeleteBindingCommand extends Command
     private function askForVhost(): string
     {
         // call API and get available VirtualHosts
-        $virtualHosts = $this->clientAdapter->getVirtualHosts();
+        $virtualHosts = $this->managementClientAdapter->getVirtualHosts();
         $virtualHostsChoices = array_map(function (array $row) {
             return $row['name'];
         }, $virtualHosts);
@@ -80,7 +80,7 @@ class DeleteBindingCommand extends Command
 
     private function askForQueue(string $vhost)
     {
-        $queues = $this->clientAdapter->getQueues($vhost);
+        $queues = $this->managementClientAdapter->getQueues($vhost);
         $queuesChoices = array_map(function (array $queue) {
             return $queue['name'];
         }, $queues);

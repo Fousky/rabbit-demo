@@ -11,16 +11,16 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 /**
  * @author Lukáš Brzák <lukas.brzak@fousky.cz>
  */
-class DeleteVirtualHostCommand extends Command
+final class DeleteVirtualHostCommand extends Command
 {
     /** @var RabbitManagementClientAdapterFactory */
-    private $adapterFactory;
+    private $managementClientAdapterFactory;
 
     public function __construct(
-        RabbitManagementClientAdapterFactory $clientAdapterFactory,
+        RabbitManagementClientAdapterFactory $managementClientAdapterFactory,
         string $name = null
     ) {
-        $this->adapterFactory = $clientAdapterFactory;
+        $this->managementClientAdapterFactory = $managementClientAdapterFactory;
 
         parent::__construct($name);
     }
@@ -37,7 +37,7 @@ class DeleteVirtualHostCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $managementClientAdapter = $this->adapterFactory->getAdapter();
+        $managementClientAdapter = $this->managementClientAdapterFactory->getAdapter();
 
         $virtualHosts = $managementClientAdapter->getVirtualHosts();
         $virtualHostsChoices = array_map(function (array $row) {

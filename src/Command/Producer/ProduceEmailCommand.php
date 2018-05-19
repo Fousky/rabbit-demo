@@ -12,16 +12,16 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 /**
  * @author Lukáš Brzák <lukas.brzak@fousky.cz>
  */
-class ProduceEmailCommand extends Command
+final class ProduceEmailCommand extends Command
 {
     /** @var RabbitClientAdapterFactory */
     private $clientAdapterFactory;
 
     public function __construct(
-        RabbitClientAdapterFactory $clientAdapterFactory,
+        RabbitClientAdapterFactory $managementClientAdapterFactory,
         string $name = null
     ) {
-        $this->clientAdapterFactory = $clientAdapterFactory;
+        $this->clientAdapterFactory = $managementClientAdapterFactory;
 
         parent::__construct($name);
     }

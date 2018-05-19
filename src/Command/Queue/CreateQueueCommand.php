@@ -12,19 +12,19 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 /**
  * @author Lukáš Brzák <lukas.brzak@fousky.cz>
  */
-class CreateQueueCommand extends Command
+final class CreateQueueCommand extends Command
 {
     /** @var RabbitManagementClientAdapterFactory */
-    private $clientAdapterFactory;
+    private $managementClientAdapterFactory;
 
     /** @var SymfonyStyle */
     private $io;
 
     public function __construct(
-        RabbitManagementClientAdapterFactory $clientAdapterFactory,
+        RabbitManagementClientAdapterFactory $managementClientAdapterFactory,
         string $name = null
     ) {
-        $this->clientAdapterFactory = $clientAdapterFactory;
+        $this->managementClientAdapterFactory = $managementClientAdapterFactory;
 
         parent::__construct($name);
     }
@@ -41,7 +41,7 @@ class CreateQueueCommand extends Command
     {
         $this->io = new SymfonyStyle($input, $output);
 
-        $clientAdapter = $this->clientAdapterFactory->getAdapter();
+        $clientAdapter = $this->managementClientAdapterFactory->getAdapter();
 
         $vhost = $this->askForVhost($clientAdapter);
         $queue = (string) $this->io->ask('Enter Queue name');

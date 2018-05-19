@@ -11,7 +11,7 @@ use Symfony\Component\Process\Process;
 /**
  * @author Lukáš Brzák <lukas.brzak@fousky.cz>
  */
-class CreateUserCommand extends Command
+final class CreateUserCommand extends Command
 {
     /** @var SymfonyStyle */
     private $io;
