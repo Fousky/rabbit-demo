@@ -15,16 +15,16 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class DeleteQueueCommand extends Command
 {
     /** @var RabbitManagementClientAdapterFactory */
-    private $adapterFactory;
+    private $clientAdapterFactory;
 
     /** @var SymfonyStyle */
     private $io;
 
     public function __construct(
-        RabbitManagementClientAdapterFactory $adapterFactory,
+        RabbitManagementClientAdapterFactory $clientAdapterFactory,
         string $name = null
     ) {
-        $this->adapterFactory = $adapterFactory;
+        $this->clientAdapterFactory = $clientAdapterFactory;
 
         parent::__construct($name);
     }
@@ -41,7 +41,7 @@ class DeleteQueueCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $clientAdapter = $this->adapterFactory->getAdapter();
+        $clientAdapter = $this->clientAdapterFactory->getAdapter();
 
         $vhost = $this->askForVhost($clientAdapter);
         $queue = $this->askForQueue($clientAdapter, $vhost);

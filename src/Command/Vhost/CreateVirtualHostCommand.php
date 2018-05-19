@@ -17,10 +17,10 @@ class CreateVirtualHostCommand extends Command
     private $adapterFactory;
 
     public function __construct(
-        RabbitManagementClientAdapterFactory $adapterFactory,
+        RabbitManagementClientAdapterFactory $clientAdapterFactory,
         string $name = null
     ) {
-        $this->adapterFactory = $adapterFactory;
+        $this->adapterFactory = $clientAdapterFactory;
         parent::__construct($name);
     }
 
